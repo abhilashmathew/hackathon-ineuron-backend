@@ -11,6 +11,7 @@ import {
   getProduct,
   updateProduct,
 } from "../resources/product/product_controller";
+import authMiddleware from "../middlewares/auth_middleware";
 
 class ProductRouter implements BaseRouter {
   path: string = "/products";
@@ -24,6 +25,7 @@ class ProductRouter implements BaseRouter {
     // create product
     this.router.post(
       this.path,
+      authMiddleware(),
       reqSchemaValidator({ body: createValidation }),
       createProduct
     );
@@ -31,6 +33,7 @@ class ProductRouter implements BaseRouter {
     /* get product */
     this.router.get(
       `${this.path}/:id`,
+      authMiddleware(),
       reqSchemaValidator({ params: paramValidation }),
       getProduct
     );
@@ -38,6 +41,7 @@ class ProductRouter implements BaseRouter {
     /* update product */
     this.router.put(
       `${this.path}/:id`,
+      authMiddleware(),
       reqSchemaValidator({ params: paramValidation }),
       updateProduct
     );
@@ -45,6 +49,7 @@ class ProductRouter implements BaseRouter {
     /* delete product */
     this.router.delete(
       `${this.path}/:id`,
+      authMiddleware(),
       reqSchemaValidator({ params: paramValidation }),
       deleteProduct
     );
