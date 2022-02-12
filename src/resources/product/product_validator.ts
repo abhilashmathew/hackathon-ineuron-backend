@@ -14,7 +14,7 @@ const updateValidation = Joi.object({
   image: Joi.string().required(),
 });
 const paramValidation = Joi.object({
-  id: Joi.string().custom(isValidObjectId).message("Invalid Product Id"),
+  productId: Joi.string().custom(isValidObjectId).message("Invalid Product Id"),
 });
 
 export { createValidation, updateValidation, paramValidation };

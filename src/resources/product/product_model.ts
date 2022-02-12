@@ -1,5 +1,13 @@
-import { model, Schema, Document } from "mongoose";
+import { model, Schema, Document, Types } from "mongoose";
+import { UserDocument } from "../user/user_model";
+import { productSchema } from "./product_schema";
+
+interface ProductUserI {
+  name: String;
+  userId: UserDocument["_id"];
+}
 interface ProductI {
+  user: ProductUserI;
   title: string;
   description: string;
   price: number;
@@ -10,17 +18,8 @@ interface ProductDocument extends ProductI, Document {
   //Any  methods
 }
 
-const productSchema = new Schema<ProductDocument>(
-  {
-    title: { type: String, required: true },
-    description: { type: String, required: true },
-    price: { type: Number, required: true },
-    image: { type: String, required: true },
-  },
-  { timestamps: true }
-);
 const ProductModel = model<ProductDocument>("Product", productSchema);
-export { ProductModel, ProductI ,ProductDocument};
+export { ProductModel, ProductI, ProductDocument, ProductUserI };
 
 //!code for using instance metthods and static methords
 // import { Model, model, Schema } from "mongoose";
