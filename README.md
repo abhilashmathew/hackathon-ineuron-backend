@@ -1,3 +1,4 @@
+### POSTMAN DOCS: https://documenter.getpostman.com/view/9656485/UVeMK4Ts
 **baseUrl: https://minimal-shop-app.herokuapp.com/**
 
 # Token Route
