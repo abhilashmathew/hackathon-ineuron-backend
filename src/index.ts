@@ -8,7 +8,7 @@ dotenv.config();
 const app = new App({
   appRouters: [new ProductRouter(), new UserRouter(), new TokensRouter()],
   mongoUri: process.env.MONGO_URI as string,
-  port: Number.parseInt(process.env.PORT as string),
+  port: Number.parseInt((process.env.PORT ?? 1377 )as string),
   version: "/v1",
 });
 
