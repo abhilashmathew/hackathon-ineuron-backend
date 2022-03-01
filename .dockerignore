@@ -1,8 +1,8 @@
 /node_modules
-/dist
 Dockerfile
 .git
 .env
 .gitignore
 yarn.lock
 README.md
+docker-compose*

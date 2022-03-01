@@ -1,0 +1,43 @@
+version: '3'
+services:
+  node-app:
+    build: .
+    ports:
+      - "8080:3000" #in local uses 8080 in docker uses 3000 port
+    # environment:
+    #   - PORT=3000
+    env_file:
+      - .env
+
+#* run docker compose
+#  docker-compose up -d
+
+# stop docker compose
+# docker-compose down
+
+# stop docker compose and remove volumes
+# docker-compose down -v
+
+# rebuild docker compose image
+# docker compose build
+# docker compose -d --build
+
+
+
+# build prod env
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build
+
+# build dev env
+# docker-compose -f docker-compose.yml -f docker-compose.dev.yml up --build
+
+# run prod env
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up 
+
+# run dev env
+# docker-compose -f docker-compose.yml -f docker-compose.dev.yml up 
+
+# down docker-compose
+# docker-compose -f docker-compose.yml -f <prod/dev file> down 
+
+# down docker-compose and volumes
+# docker-compose -f docker-compose.yml -f <prod/dev file> down -v

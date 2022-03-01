@@ -1,0 +1,12 @@
+version: '3'
+services:
+  node-app:
+    build: .
+    volumes:
+      - ./:/app #[./] is current path [/app] is WORKDIR in docker -- used to sync local changes to docker
+      - /app/node_modules # while syncing dont override this folder
+    environment:
+      - NODE_ENV=development
+    env_file:
+      - .env
+    command: yarn dev # overring [ CMD [ "yarn","start" ] ] in Dockerfile
