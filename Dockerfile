@@ -3,7 +3,8 @@ WORKDIR /app
 COPY package.json .
 RUN yarn install
 COPY . ./
-EXPOSE 1377
+ENV PORT 3000
+EXPOSE $PORT
 CMD [ "yarn","dev" ]
 
 
@@ -15,6 +16,13 @@ CMD [ "yarn","dev" ]
 # docker ps 
 #* get all docker containers
 # docker ps 
+
+#* removing docker images
+# docker rmi <name/id>
+#* removing docker containers
+# docker rm <name/id> 
+#* removing docker containers and volumes
+# docker rm <name/id> -fv
 
 
 #! docker build commands
@@ -28,5 +36,8 @@ CMD [ "yarn","dev" ]
 #? @param [-p 1377:1377] PATH proxy
 #  docker run -v $(pwd):/app:ro -v app/node_modules -it -p 1377:1377 --name node-app  minimal-shop-app
 #  docker run -v $(pwd):/app:ro -v app/node_modules -d -p 1377:1377 --name node-app  minimal-shop-app
+#* run docker container with .env files/variables
+# docker run -v $(pwd):/app:ro -v app/node_modules -d --env-file .env -p 1376:3000 --name node-app minimal-shop-app
+# docker run -v $(pwd):/app:ro -v app/node_modules -d --env PORT=3000 -p 1376:3000 --name node-app minimal-shop-app
 #* get root iteractive terminal 
 # docker exec -it <countainer-id/name> bash

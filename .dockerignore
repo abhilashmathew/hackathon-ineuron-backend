@@ -2,6 +2,7 @@
 /dist
 Dockerfile
 .git
+.env
 .gitignore
 yarn.lock
 README.md
