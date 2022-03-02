@@ -1,6 +1,12 @@
 FROM node:16
 WORKDIR /app
 COPY package.json .
+# # Check the env and install 
+# ARG NODE_ENV
+# RUN if [ "$NODE_ENV" = "development" ];\
+#     then yarn install; \
+#     else yarn install --production;\
+#     fi
 RUN yarn install
 COPY . ./
 ENV PORT 3000
