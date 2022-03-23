@@ -1,9 +1,9 @@
-import { model, Schema, Document, Types } from "mongoose";
+import { model, Document } from "mongoose";
 import { UserDocument } from "../user/user_model";
 import { productSchema } from "./product_schema";
 
 interface ProductUserI {
-  name: String;
+  name: string;
   userId: UserDocument["_id"];
 }
 interface ProductI {

@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from "express";
 import HttpException from "../utils/exceptions/http_exception";
-import UserPayloadI from "../utils/interfaces/jwt_user_payload";
 import { verfyAccessToken } from "../resources/tokens/token_helper";
 
 /**

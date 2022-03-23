@@ -15,7 +15,7 @@ export class TokensRouter implements BaseRouter {
     this.router = Router();
     this.initRoutes();
   }
-  path: string = "/token";
+  path= "/token";
   router: Router;
   private initRoutes(): void {
     // route for creating access token from refresh token

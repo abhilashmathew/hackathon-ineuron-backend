@@ -1,4 +1,4 @@
-import App from "./app";
+import App from './app';
 import ProductRouter from "./router/product_router";
 import UserRouter from "./router/user_router";
 import dotenv from "dotenv";

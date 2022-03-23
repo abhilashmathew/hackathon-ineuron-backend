@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from "express";
-import { userInfo } from "os";
 import HttpException from "../../utils/exceptions/http_exception";
-import ResFailedInterface from "../../utils/interfaces/res_failed_interface";
+import { ResFailedInterface } from "../../utils/interfaces/res_failed_interface";
 import services from "./product_services";
 import _ from "lodash";
 

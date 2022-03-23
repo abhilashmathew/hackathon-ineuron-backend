@@ -1,8 +1,7 @@
 import console from "console";
 import { NextFunction, Request, Response } from "express";
 import Joi from "joi";
-import HttpException from "../utils/exceptions/http_exception";
-import ResFailedInterface from "../utils/interfaces/res_failed_interface";
+import {ResFailedInterface }from "../utils/interfaces/res_failed_interface";
 
 interface RequestValidator {
   body?: Joi.Schema;

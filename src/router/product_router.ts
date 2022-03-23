@@ -15,7 +15,7 @@ import {
 import authMiddleware from "../middlewares/auth_middleware";
 
 class ProductRouter implements BaseRouter {
-  path: string = "/products";
+  path= "/products";
   router: Router;
   constructor() {
     this.router = Router();

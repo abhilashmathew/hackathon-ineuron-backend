@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import HttpException from "../utils/exceptions/http_exception";
-import ResFailedInterface from "../utils/interfaces/res_failed_interface";
+import {ResFailedInterface} from "../utils/interfaces/res_failed_interface";
 
 function errorMiddleware(
   error: HttpException,

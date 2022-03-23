@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import services from "./user_services";
 import HttpException from "../../utils/exceptions/http_exception";
-import _, { omit } from "lodash";
+import { omit } from "lodash";
 
 const loginUser = async (req: Request, res: Response, next: NextFunction) => {
   try {

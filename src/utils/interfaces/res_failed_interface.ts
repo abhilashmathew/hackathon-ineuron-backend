@@ -1,6 +1,4 @@
-import HttpException from "../exceptions/http_exception";
-
-interface ResFailedInterface {
+export interface ResFailedInterface {
   status: "ERROR";
   error: {
     message: string;
@@ -9,5 +7,3 @@ interface ResFailedInterface {
     errorStack?: any;
   };
 }
-
-export = ResFailedInterface;
