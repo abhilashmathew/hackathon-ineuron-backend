@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./dist/index.js",
     "build": "tsc -p .",
-    "dev": "nodemon --files ./src/index.ts"
+    "dev": "nodemon --files ./src/index.ts",
+    "lint": "yarn eslint . --ext .ts"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
