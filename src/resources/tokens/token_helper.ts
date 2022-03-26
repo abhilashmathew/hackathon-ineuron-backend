@@ -1,11 +1,11 @@
-import jwt, { JwtPayload } from "jsonwebtoken";
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
 const createAccessToken = (payload: object) => {
   const _token = jwt.sign(
     { data: payload },
     process.env.JWT_ACCESS_KEY as jwt.Secret,
     {
-      expiresIn: "15m",
+      expiresIn: '15m',
     }
   );
   return _token;
@@ -15,7 +15,7 @@ const createRefreshToken = (payload: object) => {
     { data: payload },
     process.env.JWT_REFRESH_KEY as jwt.Secret,
     {
-      expiresIn: "1y",
+      expiresIn: '1y',
     }
   );
   return _token;

@@ -1,13 +1,13 @@
-import { Request, Response, NextFunction } from "express";
-import HttpException from "../../utils/exceptions/http_exception";
-import { ResFailedInterface } from "../../utils/interfaces/res_failed_interface";
-import services from "./product_services";
-import _ from "lodash";
+import { Request, Response, NextFunction } from 'express';
+import HttpException from '../../utils/exceptions/http_exception';
+import { ResFailedInterface } from '../../utils/interfaces/res_failed_interface';
+import services from './product_services';
+import _ from 'lodash';
 
 const productNotFound: ResFailedInterface = {
-  status: "ERROR",
+  status: 'ERROR',
   error: {
-    message: "Product not found",
+    message: 'Product not found',
     code: 404,
   },
 };
@@ -28,9 +28,9 @@ const createProduct = async (
 
     res
       .status(201)
-      .send({ status: "OK", data: _.omit(product?.toObject(), ["user._id"]) });
+      .send({ status: 'OK', data: _.omit(product?.toObject(), ['user._id']) });
   } catch (error) {
-    next(new HttpException(400, "Cannot create Product", error));
+    next(new HttpException(400, 'Cannot create Product', error));
   }
 };
 
@@ -46,9 +46,9 @@ const updateProduct = async (
       req.user.id
     );
     if (!product) return res.status(404).send(productNotFound);
-    res.status(200).send({ status: "OK", data: product });
+    res.status(200).send({ status: 'OK', data: product });
   } catch (error) {
-    next(new HttpException(400, "Cannot update Product", error));
+    next(new HttpException(400, 'Cannot update Product', error));
   }
 };
 
@@ -59,9 +59,9 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
       req.user.id
     );
     if (!product) return res.status(404).send(productNotFound);
-    res.status(200).send({ status: "OK", data: product });
+    res.status(200).send({ status: 'OK', data: product });
   } catch (error) {
-    next(new HttpException(400, "Cannot get Product", error));
+    next(new HttpException(400, 'Cannot get Product', error));
   }
 };
 const getAllProduct = async (
@@ -72,9 +72,9 @@ const getAllProduct = async (
   try {
     const product = await services.getAllProduct(req.user.id);
     if (!product) return res.status(404).send(productNotFound);
-    res.status(200).send({ status: "OK", data: product });
+    res.status(200).send({ status: 'OK', data: product });
   } catch (error) {
-    next(new HttpException(400, "Cannot get Product", error));
+    next(new HttpException(400, 'Cannot get Product', error));
   }
 };
 
@@ -90,9 +90,9 @@ const deleteProduct = async (
     );
     if (!product) return res.status(404).send(productNotFound);
 
-    res.status(200).send({ status: "OK", data: product });
+    res.status(200).send({ status: 'OK', data: product });
   } catch (error) {
-    next(new HttpException(400, "Cannot delete Product", error));
+    next(new HttpException(400, 'Cannot delete Product', error));
   }
 };
 export {

@@ -1,5 +1,5 @@
-import { Document, model, Schema } from "mongoose";
-import bcrypt from "bcrypt";
+import { Document, model, Schema } from 'mongoose';
+import bcrypt from 'bcrypt';
 
 interface UserI {
   name: string;
@@ -22,8 +22,8 @@ userSchema.methods.isPasswordValid = async function (password: string) {
   return await bcrypt.compare(password, this.password);
 };
 
-userSchema.pre("save", async function (next) {
-  if (!this.isModified("password")) {
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
     return next();
   }
   // 10 is salt
@@ -32,6 +32,6 @@ userSchema.pre("save", async function (next) {
   next();
 });
 
-const UserModel = model<UserDocument>("User", userSchema);
+const UserModel = model<UserDocument>('User', userSchema);
 
 export { UserI, UserDocument, UserModel };

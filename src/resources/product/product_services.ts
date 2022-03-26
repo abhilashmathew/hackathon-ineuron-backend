@@ -1,4 +1,4 @@
-import { ProductDocument, ProductI, ProductModel } from "./product_model";
+import { ProductDocument, ProductI, ProductModel } from './product_model';
 
 //For creating a product
 const createProduct = async (
@@ -8,7 +8,7 @@ const createProduct = async (
     const _product = ProductModel.create(product);
     return _product;
   } catch (error) {
-    throw new Error("Unable to create Product");
+    throw new Error('Unable to create Product');
   }
 };
 
@@ -22,14 +22,14 @@ const updateProduct = async (
      * updates perticular product that matches current user
      */
     return ProductModel.findOneAndUpdate(
-      { _id: productId, "user.userId": userId },
+      { _id: productId, 'user.userId': userId },
       updateData,
       {
         new: true,
       }
     );
   } catch (error) {
-    throw new Error("Unable to update Product");
+    throw new Error('Unable to update Product');
   }
 };
 const deleteProduct = async (
@@ -40,10 +40,10 @@ const deleteProduct = async (
     return ProductModel.findByIdAndDelete({
       _id: productId,
     })
-      .where("user.userId")
+      .where('user.userId')
       .equals(userId);
   } catch (error) {
-    throw new Error("Unable to get Product");
+    throw new Error('Unable to get Product');
   }
 };
 const getProduct = async (
@@ -54,10 +54,10 @@ const getProduct = async (
     return ProductModel.findById({
       _id: productId,
     })
-      .where("user.userId")
+      .where('user.userId')
       .equals(userId);
   } catch (error) {
-    throw new Error("Unable to delete Product");
+    throw new Error('Unable to delete Product');
   }
 };
 const getAllProduct = async (
@@ -65,10 +65,10 @@ const getAllProduct = async (
 ): Promise<ProductDocument[] | null> => {
   try {
     return ProductModel.find({
-      "user.userId": userId,
+      'user.userId': userId,
     });
   } catch (error) {
-    throw new Error("Unable to delete Product");
+    throw new Error('Unable to delete Product');
   }
 };
 export default {

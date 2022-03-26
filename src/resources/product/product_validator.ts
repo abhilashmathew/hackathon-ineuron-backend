@@ -1,5 +1,5 @@
-import Joi from "joi";
-import { isValidObjectId } from "../../utils/validators/object_id_validator";
+import Joi from 'joi';
+import { isValidObjectId } from '../../utils/validators/object_id_validator';
 
 const createValidation = Joi.object({
   title: Joi.string().required().min(3).max(150),
@@ -14,7 +14,7 @@ const updateValidation = Joi.object({
   image: Joi.string().required(),
 });
 const paramValidation = Joi.object({
-  productId: Joi.string().custom(isValidObjectId).message("Invalid Product Id"),
+  productId: Joi.string().custom(isValidObjectId).message('Invalid Product Id'),
 });
 
 export { createValidation, updateValidation, paramValidation };

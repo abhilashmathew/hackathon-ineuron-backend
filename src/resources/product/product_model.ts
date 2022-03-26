@@ -1,10 +1,10 @@
-import { model, Document } from "mongoose";
-import { UserDocument } from "../user/user_model";
-import { productSchema } from "./product_schema";
+import { model, Document } from 'mongoose';
+import { UserDocument } from '../user/user_model';
+import { productSchema } from './product_schema';
 
 interface ProductUserI {
   name: string;
-  userId: UserDocument["_id"];
+  userId: UserDocument['_id'];
 }
 interface ProductI {
   user: ProductUserI;
@@ -18,7 +18,7 @@ interface ProductDocument extends ProductI, Document {
   //Any  methods
 }
 
-const ProductModel = model<ProductDocument>("Product", productSchema);
+const ProductModel = model<ProductDocument>('Product', productSchema);
 export { ProductModel, ProductI, ProductDocument, ProductUserI };
 
 //!code for using instance metthods and static methords

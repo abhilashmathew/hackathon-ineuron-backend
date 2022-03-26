@@ -1,21 +1,21 @@
-import { Router } from "express";
-import BaseRouter from "./router";
-import { reqSchemaValidator } from "../middlewares/validation_middleware";
+import { Router } from 'express';
+import BaseRouter from './router';
+import { reqSchemaValidator } from '../middlewares/validation_middleware';
 import {
   createValidation,
   paramValidation,
-} from "../resources/product/product_validator";
+} from '../resources/product/product_validator';
 import {
   createProduct,
   deleteProduct,
   getAllProduct,
   getProduct,
   updateProduct,
-} from "../resources/product/product_controller";
-import authMiddleware from "../middlewares/auth_middleware";
+} from '../resources/product/product_controller';
+import authMiddleware from '../middlewares/auth_middleware';
 
 class ProductRouter implements BaseRouter {
-  path= "/products";
+  path= '/products';
   router: Router;
   constructor() {
     this.router = Router();

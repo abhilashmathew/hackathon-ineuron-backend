@@ -1,5 +1,5 @@
 export interface ResFailedInterface {
-  status: "ERROR";
+  status: 'ERROR';
   error: {
     message: string;
     devMessage?:string

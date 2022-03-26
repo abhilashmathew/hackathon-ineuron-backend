@@ -1,8 +1,9 @@
-import express, { Application } from "express";
-import mongoose from "mongoose";
+import express, { Application } from 'express';
+import mongoose from 'mongoose';
 
-import BaseRouter from "./router/router";
-import errorMiddleware from "./middlewares/error_middleware";
+import BaseRouter from './router/router';
+import errorMiddleware from './middlewares/error_middleware';
+
 class App {
   public express: Application;
   /*   3000  */

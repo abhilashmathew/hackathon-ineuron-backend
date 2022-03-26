@@ -1,6 +1,6 @@
-import { UserDocument, UserI, UserModel } from "./user_model";
-import { createAccessToken, createRefreshToken } from "../tokens/token_helper";
-import UserPayloadI from "../../utils/interfaces/jwt_user_payload";
+import { UserDocument, UserI, UserModel } from './user_model';
+import { createAccessToken, createRefreshToken } from '../tokens/token_helper';
+import UserPayloadI from '../../utils/interfaces/jwt_user_payload';
 
 type ResponseWithToken = {
   accessToken: string;
@@ -33,10 +33,10 @@ const loginUser = async (
   password: string
 ): Promise<ResponseWithToken> => {
   const user = await UserModel.findOne({ email });
-  if (!user) throw new Error("User not found");
+  if (!user) throw new Error('User not found');
 
   if (!(await user.isPasswordValid(password)))
-    throw new Error("Invalid Password");
+    throw new Error('Invalid Password');
 
   const payload: UserPayloadI = { id: user._id, name: user?.name };
   const accessToken = createAccessToken(payload);
@@ -46,17 +46,17 @@ const loginUser = async (
 };
 
 const getAllUsers = async (): Promise<AllUser> => {
-  const users = await UserModel.find().select("-__v -password");
+  const users = await UserModel.find().select('-__v -password');
   return users;
 };
 
 const getUser = async (userId: string): Promise<SingleUser> => {
-  const users = await UserModel.findById(userId).select("-__v -password");
+  const users = await UserModel.findById(userId).select('-__v -password');
   return users;
 };
 const deleteUser = async (userId: string): Promise<SingleUser> => {
   const users = await UserModel.findByIdAndDelete(userId).select(
-    "-__v -password"
+    '-__v -password'
   );
   return users;
 };

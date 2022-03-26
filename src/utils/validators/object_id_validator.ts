@@ -1,8 +1,8 @@
-import { Types } from "mongoose";
+import { Types } from 'mongoose';
 
 // validate mongoose object id
 const isValidObjectId = (val: string): string => {
-  const _error = new Error("Invalid Mongo Id");
+  const _error = new Error('Invalid Mongo Id');
   if (Types.ObjectId.isValid(val)) {
     if (String(new Types.ObjectId(val)) === val) return val;
     throw _error;

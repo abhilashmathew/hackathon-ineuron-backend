@@ -1,19 +1,19 @@
-import { Request, Response, NextFunction } from "express";
-import HttpException from "../utils/exceptions/http_exception";
-import {ResFailedInterface} from "../utils/interfaces/res_failed_interface";
+import { Request, Response } from 'express';
+import HttpException from '../utils/exceptions/http_exception';
+import {ResFailedInterface} from '../utils/interfaces/res_failed_interface';
 
 function errorMiddleware(
   error: HttpException,
   req: Request,
   res: Response,
-  _next: NextFunction
+  // _next: NextFunction
 ): void {
   const statusCode = error.statusCode || 500;
-  const message = error.message || "Something went wrong";
+  const message = error.message || 'Something went wrong';
   console.error(error.caughtError);
   const devErrorMsg: any = error.caughtError;
   const _error: ResFailedInterface = {
-    status: "ERROR",
+    status: 'ERROR',
     error: {
       code: statusCode,
       message: message,

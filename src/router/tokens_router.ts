@@ -1,21 +1,21 @@
-import { Router } from "express";
-import { reqSchemaValidator } from "../middlewares/validation_middleware";
+import { Router } from 'express';
+import { reqSchemaValidator } from '../middlewares/validation_middleware';
 import {
   createAccessTokenFromRefreshToken,
   decodeDataFromToken,
-} from "../resources/tokens/token_controller";
+} from '../resources/tokens/token_controller';
 import {
   createTokenWithRefreshTokenValidator,
   decodeDataFromTokenValidator,
-} from "../resources/tokens/token_schema_validator";
-import BaseRouter from "./router";
+} from '../resources/tokens/token_schema_validator';
+import BaseRouter from './router';
 
 export class TokensRouter implements BaseRouter {
   constructor() {
     this.router = Router();
     this.initRoutes();
   }
-  path= "/token";
+  path= '/token';
   router: Router;
   private initRoutes(): void {
     // route for creating access token from refresh token

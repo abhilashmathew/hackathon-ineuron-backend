@@ -1,21 +1,21 @@
-import { Router } from "express";
-import BaseRouter from "./router";
-import { reqSchemaValidator } from "../middlewares/validation_middleware";
+import { Router } from 'express';
+import BaseRouter from './router';
+import { reqSchemaValidator } from '../middlewares/validation_middleware';
 import {
   loginUserValidator,
   registerUserValidator,
-} from "../resources/user/user_validator";
+} from '../resources/user/user_validator';
 import {
   deleteUser,
   getAllUser,
   getUser,
   loginUser,
   registerUser,
-} from "../resources/user/user_controller";
-import authMiddleware from "../middlewares/auth_middleware";
+} from '../resources/user/user_controller';
+import authMiddleware from '../middlewares/auth_middleware';
 
 class UserRouter implements BaseRouter {
-  path = "/user";
+  path = '/user';
   router: Router;
   constructor() {
     this.router = Router();
