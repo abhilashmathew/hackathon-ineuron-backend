@@ -1,5 +1,5 @@
 import { UserDocument, UserI, UserModel } from './user_model';
-import { createAccessToken, createRefreshToken } from '../tokens/token_helper';
+import { createAccessToken, createRefreshToken } from '../../utils/helpers/token_helper';
 import UserPayloadI from '../../utils/interfaces/jwt_user_payload';
 
 type ResponseWithToken = {

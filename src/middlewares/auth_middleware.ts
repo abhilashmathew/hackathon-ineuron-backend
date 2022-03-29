@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import HttpException from '../utils/exceptions/http_exception';
-import { verfyAccessToken } from '../resources/tokens/token_helper';
+import { verfyAccessToken } from '../utils/helpers/token_helper';
 
 /**
  *

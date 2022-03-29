@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import mongoose from 'mongoose';
 
-import BaseRouter from './router/router';
+import BaseRouter, { InitialRouter } from './router/router';
 import errorMiddleware from './middlewares/error_middleware';
 
 class App {
@@ -10,6 +10,8 @@ class App {
   public port: number;
   /*   /v1  */
   public version: string;
+  static routers: BaseRouter[];
+
   constructor({
     appRouters,
     mongoUri,
@@ -35,9 +37,12 @@ class App {
     this.express.use(express.urlencoded({ extended: false }));
   }
 
-  private initialiseControllers(router: BaseRouter[]): void {
-    
-    router.forEach((controller: BaseRouter) => {
+  private initialiseControllers(routers: BaseRouter[]): void {
+    App.routers = routers;
+    // Initial route
+    this.express.use('/', new InitialRouter().router);
+    // Other routs
+    routers.forEach((controller: BaseRouter) => {
       this.express.use(`/api${this.version}`, controller.router);
     });
   }

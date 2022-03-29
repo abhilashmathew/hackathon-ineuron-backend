@@ -6,7 +6,7 @@ import {
   createRefreshToken,
   verfyAccessToken,
   verfyRefreshToken,
-} from './token_helper';
+} from '../../utils/helpers/token_helper';
 
 export const createAccessTokenFromRefreshToken = async (
   req: Request,
