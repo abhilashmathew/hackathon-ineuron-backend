@@ -4,6 +4,6 @@ export interface ResFailedInterface {
     message: string;
     devMessage?:string
     code: number;
-    errorStack?: any;
+    errorStack?: unknown;
   };
 }

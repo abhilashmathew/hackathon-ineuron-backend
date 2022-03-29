@@ -1,23 +1,20 @@
 import { UserDocument, UserI, UserModel } from './user_model';
-import { createAccessToken, createRefreshToken } from '../../utils/helpers/token_helper';
+import {
+  createAccessToken,
+  createRefreshToken,
+} from '../../utils/helpers/token_helper';
 import UserPayloadI from '../../utils/interfaces/jwt_user_payload';
 
+type UserWith_Id = UserDocument & {
+  _id: unknown;
+};
 type ResponseWithToken = {
   accessToken: string;
   refreshToken: string;
-  user: UserDocument & {
-    _id: any;
-  };
+  user: UserWith_Id;
 };
 
-type AllUser = (UserDocument & {
-  _id: any;
-})[];
-type SingleUser =
-  | (UserDocument & {
-      _id: any;
-    })
-  | null;
+type SingleUser = UserWith_Id | null;
 
 const registerUser = async (user: UserI): Promise<ResponseWithToken> => {
   const _user = await UserModel.create(user);
@@ -45,7 +42,7 @@ const loginUser = async (
   return { accessToken, refreshToken, user };
 };
 
-const getAllUsers = async (): Promise<AllUser> => {
+const getAllUsers = async (): Promise<UserWith_Id[]> => {
   const users = await UserModel.find().select('-__v -password');
   return users;
 };

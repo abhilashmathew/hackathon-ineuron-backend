@@ -1,6 +1,6 @@
 import console from 'console';
 import { NextFunction, Request, Response } from 'express';
-import Joi from 'joi';
+import Joi, { ValidationError } from 'joi';
 import { ResFailedInterface } from '../utils/interfaces/res_failed_interface';
 
 interface RequestValidator {
@@ -17,16 +17,22 @@ const reqSchemaValidator =
       await params?.validateAsync(req.params);
       await query?.validateAsync(req.query);
       next();
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error(error);
-      let msg: string = error.message ?? 'something went wrong';
-      if (error.details) msg = error.details[0].message;
+      let msg: unknown;
+      let errorStack: unknown | null = error;
+      if (error instanceof Error) msg = error.message ?? 'something went wrong';
+
+      if (error instanceof ValidationError && error && error.details) {
+        msg = error.details[0].message;
+        errorStack = error.details;
+      }
       const _error: ResFailedInterface = {
         status: 'ERROR',
         error: {
-          message: msg,
+          message: msg as string,
           code: 400,
-          errorStack: error.details ?? error,
+          errorStack: errorStack,
         },
       };
       res.status(400).send(_error);

@@ -37,10 +37,12 @@ const registerUser = async (
       refreshToken,
       data: omit(user?.toJSON(), ['__v', 'password']),
     });
-  } catch (error: any) {
-    if (error.message && error.message.includes('duplicate key')) {
-      ///if multiple email address found
-      return next(new HttpException(400, 'User Aldredy exits', error));
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      if (error.message && error.message.includes('duplicate key')) {
+        ///if multiple email address found
+        return next(new HttpException(400, 'User Aldredy exits', error));
+      }
     }
     next(new HttpException(400, 'Cannot create User', error));
   }
@@ -65,11 +67,7 @@ const getAllUser = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
-const deleteUser = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
+const deleteUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const user = await services.deleteUser(req.user.id);
     if (!user) throw new Error('User Not Found');

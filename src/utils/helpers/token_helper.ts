@@ -25,7 +25,7 @@ const verfyAccessToken = (
   token: string
 ): {
   payload: string | JwtPayload | null;
-  jwtError?: any | null;
+  jwtError?: unknown;
 } => {
   try {
     const payload = jwt.verify(token, process.env.JWT_ACCESS_KEY as jwt.Secret);
@@ -40,7 +40,7 @@ const verfyRefreshToken = (
   token: string
 ): {
   payload: string | JwtPayload | null;
-  jwtError?: any | null;
+  jwtError?: unknown;
 } => {
   try {
     const payload = jwt.verify(

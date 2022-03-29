@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
+import { JwtPayload } from 'jsonwebtoken';
 import HttpException from '../utils/exceptions/http_exception';
 import { verfyAccessToken } from '../utils/helpers/token_helper';
 
@@ -20,7 +21,7 @@ const authMiddleware =
       const { payload, jwtError } = verfyAccessToken(accessToken);
       if (jwtError)
         return next(new HttpException(401, 'Authorization failed', jwtError));
-      req.user = (payload as any).data;
+      req.user = (payload as JwtPayload).data;
       next();
     } catch (error) {
       return next(new HttpException(401, 'Authorization failed', error));
