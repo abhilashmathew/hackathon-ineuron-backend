@@ -2,7 +2,10 @@ import express, { Application } from 'express';
 import mongoose from 'mongoose';
 
 import BaseRouter, { InitialRouter } from './router/router';
-import errorMiddleware from './middlewares/error_middleware';
+import {
+  errorMiddleware,
+  routeNotFoundMiddleware,
+} from './middlewares/error_middleware';
 
 class App {
   public express: Application;
@@ -28,7 +31,7 @@ class App {
     this.version = version;
     this.initialiseDatabaseConnection(mongoUri);
     this.initialMiddlewares();
-    this.initialiseControllers(appRouters);
+    this.initialiseRouters(appRouters);
     this.initialiseErrorHandling();
   }
 
@@ -37,17 +40,18 @@ class App {
     this.express.use(express.urlencoded({ extended: false }));
   }
 
-  private initialiseControllers(routers: BaseRouter[]): void {
+  private initialiseRouters(routers: BaseRouter[]): void {
     App.routers = routers;
     // Initial route
     this.express.use('/', new InitialRouter().router);
     // Other routs
-    routers.forEach((controller: BaseRouter) => {
-      this.express.use(`/api${this.version}`, controller.router);
+    routers.forEach((baseRouter: BaseRouter) => {
+      this.express.use(`/api${this.version}`, baseRouter.router);
     });
   }
 
   private initialiseErrorHandling(): void {
+    this.express.use(routeNotFoundMiddleware);
     this.express.use(errorMiddleware);
   }
 

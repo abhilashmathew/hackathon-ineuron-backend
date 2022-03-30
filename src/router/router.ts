@@ -20,6 +20,9 @@ export class InitialRouter implements BaseRouter {
         paths.push(ctr.path);
       });
       res.send({
+        host: req.hostname,
+        ip: req.ip,
+        remoteAddress: req.socket.remoteAddress,
         routes: paths,
       });
     });
