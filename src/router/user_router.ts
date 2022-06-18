@@ -1,17 +1,12 @@
 import { Router } from 'express';
 import BaseRouter from './router';
 import { reqSchemaValidator } from '../middlewares/validation_middleware';
-import {
-  loginUserValidator,
-  registerUserValidator,
-} from '../resources/user/user_validator';
-import {
-  deleteUser,
-  getAllUser,
-  getUser,
-  loginUser,
-  registerUser,
-} from '../resources/user/user_controller';
+import { loginUserValidator } from '../resources/user/user_validator';
+import { loginUser } from '../resources/user/user_controller';
+import { registerStudentValidator } from '../resources/user/student/student_validator';
+import { registerStudent } from '../resources/user/student/student_controller';
+import { registerTeacherValidator } from '../resources/user/teacher/teacher_validator';
+import { registerTeacher } from '../resources/user/teacher/teacher_controller';
 import authMiddleware from '../middlewares/auth_middleware';
 
 class UserRouter implements BaseRouter {
@@ -30,15 +25,21 @@ class UserRouter implements BaseRouter {
     );
 
     this.router.post(
-      `${this.path}/register`,
-      reqSchemaValidator({ body: registerUserValidator }),
-      registerUser
+      `${this.path}/student/register`,
+      reqSchemaValidator({ body: registerStudentValidator }),
+      registerStudent
     );
 
-    this.router.get(`${this.path}`, authMiddleware(), getUser);
+    this.router.post(
+      `${this.path}/teacher/register`,
+      reqSchemaValidator({ body: registerTeacherValidator }),
+      registerTeacher
+    );
 
-    this.router.get(`${this.path}/all`, authMiddleware(), getAllUser);
-    this.router.delete(`${this.path}`, authMiddleware(), deleteUser);
+    // this.router.get(`${this.path}`, authMiddleware(), getUser);
+
+    // this.router.get(`${this.path}/all`, authMiddleware(), getAllUser);
+    // this.router.delete(`${this.path}`, authMiddleware(), deleteUser);
   }
 }
 
